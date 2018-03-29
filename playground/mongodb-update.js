@@ -35,9 +35,20 @@ console.log('Connected to MongoDB server');
 
 // db.collection('Users').deleteMany({name:'Kevin'});
 
-db.collection('Users').findOneAndDelete({_id: new ObjectId("5ab39a1363f0bb0fb8880ec7") }).then((results) => {
-     console.log(JSON.stringify(results, undefined, 2));
- });
+db.collection('Users').findOneAndUpdate({
+    _id: new ObjectID('5ab39a2690531f09c047dc9d')
+}, {
+$set: {
+    name: 'Jane'
+} , 
+$inc: {
+    age: 1
+}
 
+}, {
+    returnOriginal: false
+}).then((result) => {
+    console.log(result);
+});
  db.close();
 });
